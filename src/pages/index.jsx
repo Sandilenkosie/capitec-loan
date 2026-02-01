@@ -2,6 +2,8 @@
 import { useEffect } from 'react';
 import Layout from '@/components/layout';
 import Hero from '@/components/hero';
+import Features from '@/components/features';
+import HowItWorks from '@/components/howitworks';
 import ScrollToTop from '@/components/scrollUp';
 import useScrollAnimation from '@/utils/useScrollAnimation';
 
@@ -18,6 +20,8 @@ const Index = () => {
     <div className="min-h-screen overflow-x-hidden">
       <Layout />
       <Hero />
+      <Features />
+      <HowItWorks />
       <ScrollToTop />
     </div>
   );
