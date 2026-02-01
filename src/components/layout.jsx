@@ -20,7 +20,7 @@ const Navbar = () => {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-capitec-blue/80 backdrop-blur-md py-2 shadow-lg' : 'py-4'}`}>
       <div className="container mx-auto px-2 flex justify-between items-center">
         <div className="flex items-center">
-          <img src={`${import.meta.env.BASE_URL}hero_img.png`} alt="CapitecLogo" className="h-16 md:h-24 lg:h-32 w-auto mr-2" />
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="CapitecLogo" className="h-16 md:h-24 lg:h-32 w-auto mr-2" />
         </div>
 
         <div className="hidden lg:flex items-center space-x-4">
