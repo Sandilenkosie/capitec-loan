@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Layout = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -16,6 +15,16 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleApplyNow = (event) => {
+    event.preventDefault();
+    const section = document.querySelector('#how-it-works');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    window.dispatchEvent(new Event('open-loan-dialog'));
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-capitec-blue/80 backdrop-blur-md py-2 shadow-lg' : 'py-4'}`}>
       <div className="container mx-auto px-2 flex justify-between items-center">
@@ -24,9 +33,9 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center space-x-4">
-          <Link to="#!">
-            <Button className="bg-capitec-blue hover:bg-capitec-blue-light text-white w-full">Apply Now</Button>
-          </Link>
+          <Button className="btn-capitec w-full" onClick={handleApplyNow}>
+            Apply Now
+          </Button>
         </div>
 
         {/* Mobile menu button */}
@@ -37,13 +46,13 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-crypto-blue/95 backdrop-blur-lg absolute top-full left-0 w-full py-4 shadow-lg">
+        <div className="lg:hidden bg-capitec-blue-light/50 backdrop-blur-lg absolute top-full left-0 w-full py-4 shadow-lg">
           <div className="container mx-auto px-4">
             <ul className="flex flex-col space-y-4">
               <li className="pt-4 flex flex-col space-y-3">
-                <Link to="#!">
-                  <Button className="bg-capitec-blue hover:bg-capitec-blue-light text-white w-full">Apply Now</Button>
-                </Link>
+                <Button className="btn-capitec w-full" onClick={handleApplyNow}>
+                  Apply Now
+                </Button>
               </li>
             </ul>
           </div>
@@ -53,4 +62,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Layout;

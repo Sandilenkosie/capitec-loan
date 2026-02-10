@@ -1,4 +1,5 @@
-import { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import plugin from "tailwindcss/plugin";
 
 export default {
   darkMode: ["class"],
@@ -66,9 +67,8 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Brand colors for Capitec (official values provided)
         capitec: {
-          DEFAULT: "#005B94", // primary (darker blue)
+          DEFAULT: "#005B94",
           blue: "#005B94",
           "blue-light": "#00A1E0",
           red: "#C8102E",
@@ -81,44 +81,78 @@ export default {
         display: ["Poppins", "sans-serif"],
       },
       borderRadius: {
-        xs: "0.125rem", // 2px
-        sm: "0.25rem", // 4px
-        md: "0.375rem", // 6px
-        lg: "0.5rem", // 8px
-        xl: "0.75rem", // 12px
-        "2xl": "1rem", // 16px
-        "3xl": "1.5rem", // 24px
-        circle: "50%", // perfect circle
-        pill: "9999px", // pill-shaped
+        xs: "0.125rem",
+        sm: "0.25rem",
+        md: "0.375rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+        circle: "50%",
+        pill: "9999px",
       },
       keyframes: {
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
         },
         "pulse-slow": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.8" },
+          "0%, 100%": {
+            opacity: "1",
+          },
+          "50%": {
+            opacity: "0.8",
+          },
         },
         "fade-in": {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
         },
         "fade-in-left": {
-          "0%": { opacity: "0", transform: "translateX(-20px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
         },
         "fade-in-right": {
-          "0%": { opacity: "0", transform: "translateX(20px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
+          "0%": {
+            opacity: "0",
+            transform: "translateX(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
         },
       },
       animation: {
@@ -132,5 +166,52 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    tailwindcssAnimate,
+    plugin(function ({ addComponents, theme }) {
+      const capitecBlue = theme("colors.capitec.blue") || "#005B94";
+      const capitecBlueLight = theme("colors.capitec.blue-light") || "#00A1E0";
+
+      addComponents({
+        ".btn-capitec": {
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: theme("spacing.2"),
+          padding: `${theme("spacing.2")} ${theme("spacing.4")}`,
+          height: theme("spacing.9"),
+          borderRadius: theme("borderRadius.md"),
+          backgroundColor: capitecBlue,
+          color: theme("colors.white"),
+          fontWeight: theme("fontWeight.medium"),
+          transitionProperty:
+            "background-color, box-shadow, opacity, transform",
+          transitionDuration: "200ms",
+        },
+        ".btn-capitec:hover": {
+          backgroundColor: capitecBlueLight,
+        },
+        ".btn-capitec-outline": {
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: theme("spacing.2"),
+          padding: `${theme("spacing.2")} ${theme("spacing.4")}`,
+          height: theme("spacing.9"),
+          borderRadius: theme("borderRadius.md"),
+          backgroundColor: "transparent",
+          color: capitecBlue,
+          borderWidth: "1px",
+          borderColor: capitecBlue,
+          fontWeight: theme("fontWeight.medium"),
+          transitionProperty: "background-color, color, box-shadow",
+          transitionDuration: "200ms",
+        },
+        ".btn-capitec-outline:hover": {
+          backgroundColor: capitecBlue,
+          color: theme("colors.white"),
+        },
+      });
+    }),
+  ],
 };

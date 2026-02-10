@@ -1,16 +1,73 @@
-# React + Vite
+# Capitec Loan Simulator (UI)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains a small React + Vite frontend used to demonstrate a loan eligibility and product simulator UI. The goal of this cleanup is to make the codebase simple, consistent, and easy for other developers to understand and contribute to.
 
-Currently, two official plugins are available:
+## Quick start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Install dependencies
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Run locally (dev server)
 
-## Expanding the ESLint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Optional: use local stubbed API fixtures in dev
+
+```bash
+VITE_USE_STUBS=true npm run dev
+```
+
+## Scripts
+
+- `npm run dev` — start Vite development server
+- `npm run build` — create a production build
+- `npm run preview` — locally preview the build
+- `npm run lint` — run ESLint
+- `npm run lint:fix` — auto-fix lintable issues
+- `npm test` — run unit tests (vitest)
+- `VITE_USE_STUBS=true npm run dev` — run the dev server with local stub fixtures
+
+## Project structure (high level)
+
+- `src/components` — UI components (Page-level components at root, primitives under `ui/`)
+- `src/lib` — small helpers and API wrapper
+- `src/pages` — page entrypoints
+- `src/server` — local stubbed API handlers used by the dev server / cypress
+
+## Docker (production)
+
+Build the production image:
+
+```bash
+docker build -t loan-app:latest .
+```
+
+Run the container locally (serves the built app + stub API on port 8080):
+
+```bash
+docker run --rm -p 8080:8080 loan-app:latest
+```
+
+Then open http://localhost:8080.
+
+The container exposes the same stubbed endpoints used by Cypress under
+`/api/stubs/*`, powered by the fixtures in `cypress/fixtures/api/data`.
+
+## Next steps / conventions used in the cleanup
+
+- Keep component filenames matching the exported component name (e.g. `Loans.jsx` exports `Loans`).
+- Favor small, testable utility functions in `src/lib` with unit tests.
+- Export UI primitives via `src/components/ui/index.js` for consistent imports.
+
+If you want me to continue, I can:
+
+1. Standardize component exports and add `src/components/index.js` for central exports.
+2. Consolidate and document `src/lib/api.js` and `src/lib/utils.js` and add a couple of unit tests.
+3. Run a safety refactor to make all UI primitives export via `src/components/ui/index.js` and update imports.
+
+Tell me which of the three follow-ups you'd like me to start with (1, 2 or 3), or say "do all" and I'll proceed step by step.

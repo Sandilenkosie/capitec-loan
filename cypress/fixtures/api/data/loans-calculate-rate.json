@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "data": {
+    "loanAmount": 150000.0,
+    "loanTerm": 24,
+    "creditScore": 650,
+    "loanType": "personal_loan"
+  }
+}
