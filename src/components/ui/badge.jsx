@@ -22,6 +22,15 @@ const badgeVariants = cva(
   }
 )
 
+/**
+ * Render a badge element styled according to the specified variant.
+ *
+ * @param {Object} props - Component props.
+ * @param {string} [props.className] - Additional class names to apply to the badge.
+ * @param {'default'|'secondary'|'destructive'|'outline'} [props.variant='default'] - Visual variant that controls the badge's appearance.
+ * @param {...any} [props.*] - Any other props are passed through to the underlying div (e.g., id, role, data- attributes).
+ * @returns {JSX.Element} The rendered div element representing the badge.
+ */
 function Badge({
   className,
   variant,
