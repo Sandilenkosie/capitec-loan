@@ -26,11 +26,11 @@ const Hero = () => {
               Quickly estimate if you qualify for a Capitec personal loan and see an approximate loan amount and repayment plan. No login required — just enter a few details.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-capitec hover:bg-capitec-blue-light text-white px-8 py-6">
+              <Button size="lg" className="btn-capitec px-8 py-6">
                 Start Simulation
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-capitec-blue-light text-capitec-blue hover:bg-capitec-blue-light py-6">
+              <Button variant="outline" size="lg" className="btn-capitec-outline">
                 How it works
                 <ArrowUpRight className="ml-2 h-5 w-5" />
               </Button>
@@ -38,17 +38,17 @@ const Hero = () => {
             <div className="mt-8 flex items-center space-x-6">
               <div>
                 <p className="text-2xl font-bold text-white">1.2M</p>
-                <p className="text-sm text-gray-400">Customers Notified</p>
+                <p className="text-sm text-gray-700">Customers Notified</p>
               </div>
               <div className="h-12 w-px bg-gray-700"></div>
               <div>
                 <p className="text-2xl font-bold text-white">+24%</p>
-                <p className="text-sm text-gray-400">Digital Responses</p>
+                <p className="text-sm text-gray-700">Digital Responses</p>
               </div>
               <div className="h-12 w-px bg-gray-700"></div>
               <div>
                 <p className="text-2xl font-bold text-white">From 9.5%</p>
-                <p className="text-sm text-gray-400">Avg. Interest Rate</p>
+                <p className="text-sm text-gray-700">Avg. Interest Rate</p>
               </div>
             </div>
           </div>

@@ -1,11 +1,12 @@
 
 import { useEffect } from 'react';
-import Layout from '@/components/layout';
-import Hero from '@/components/hero';
-import Features from '@/components/features';
-import HowItWorks from '@/components/howitworks';
-import ScrollToTop from '@/components/scrollUp';
-import useScrollAnimation from '@/utils/useScrollAnimation';
+import Layout from '@/components/Layout';
+import Hero from '@/components/Hero';
+import Loans from '@/components/Loans';
+import HowItWorks from '@/components/HowItWorks';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
+import useScrollAnimation from '@/server/utils/useScrollAnimation';
 
 const Index = () => {
   // Initialize scroll animations
@@ -13,15 +14,16 @@ const Index = () => {
 
   // Set page title
   useEffect(() => {
-    document.title = "CryptoFlow | Modern Cryptocurrency Trading";
+    document.title = "Capitec Bank | Modern Banking Solutions";
   }, []);
   
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Layout />
       <Hero />
-      <Features />
+      <Loans />
       <HowItWorks />
+      <Footer />
       <ScrollToTop />
     </div>
   );

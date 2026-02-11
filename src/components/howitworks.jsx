@@ -31,7 +31,7 @@ const simulatorSteps = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 bg-gradient-to-b from-[#ffffff] via-gray-100 to-capitec-blue-light">
+    <section id="how-it-works" className="py-24 bg-gradient-to-b from-[#ffffff] via-gray-300 to-gray-200">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -59,12 +59,6 @@ const HowItWorks = () => {
               <p className="text-gray-700">{step.description}</p>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-16 text-center">
-          <Button size="lg" className="bg-capitec-blue hover:bg-capitec-blue-light text-white px-8">
-            Start Eligibility Check
-          </Button>
         </div>
       </div>
     </section>

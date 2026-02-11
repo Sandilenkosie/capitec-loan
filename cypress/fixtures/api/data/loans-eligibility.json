@@ -1,0 +1,18 @@
+{
+  "personalInfo": {
+    "age": 35,
+    "employmentStatus": "employed",
+    "employmentDuration": 24
+  },
+  "financialInfo": {
+    "monthlyIncome": 25000.0,
+    "monthlyExpenses": 15000.0,
+    "existingDebt": 5000.0,
+    "creditScore": 650
+  },
+  "loanDetails": {
+    "requestedAmount": 150000.0,
+    "loanTerm": 24,
+    "loanPurpose": "home_improvement"
+  }
+}

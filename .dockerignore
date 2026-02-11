@@ -1,0 +1,14 @@
+node_modules
+dist
+.vscode
+.idea
+.git
+.gitignore
+.env
+.env.*
+.DS_Store
+npm-debug.log*
+coverage
+cypress/videos
+cypress/screenshots
+cypress/results

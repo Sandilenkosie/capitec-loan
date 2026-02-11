@@ -1,0 +1,22 @@
+{
+  "interestRate": 12.5,
+  "monthlyPayment": 7089.5,
+  "totalInterest": 20148.0,
+  "totalRepayment": 170148.0,
+  "paymentSchedule": [
+    {
+      "month": 1,
+      "payment": 7089.5,
+      "principal": 5527.17,
+      "interest": 1562.33,
+      "balance": 144472.83
+    },
+    {
+      "month": 2,
+      "payment": 7089.5,
+      "principal": 5584.89,
+      "interest": 1504.61,
+      "balance": 138887.94
+    }
+  ]
+}
