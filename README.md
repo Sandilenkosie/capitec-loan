@@ -1,6 +1,6 @@
 # Capitec Loan Simulator (UI)
 
-This repository contains a small React + Vite frontend used to demonstrate a loan eligibility and product simulator UI. The goal of this cleanup is to make the codebase simple, consistent, and easy for other developers to understand and contribute to.
+A small React + Vite frontend that demonstrates a loan eligibility and product simulator UI. This README provides a concise developer-focused reference to get the project running, explain the folder layout, and describe useful scripts and options.
 
 ## Quick start
 
@@ -10,64 +10,51 @@ This repository contains a small React + Vite frontend used to demonstrate a loa
 npm install
 ```
 
-2. Run locally (dev server)
+2. Start dev server
 
 ```bash
 npm run dev
 ```
 
-Optional: use local stubbed API fixtures in dev
+3. (Optional) Enable local stubbed API responses used during development and by Cypress
 
 ```bash
 VITE_USE_STUBS=true npm run dev
 ```
 
-## Scripts
+## Available scripts
 
-- `npm run dev` — start Vite development server
-- `npm run build` — create a production build
-- `npm run preview` — locally preview the build
+- `npm run dev` — start Vite dev server
+- `npm run build` — build production assets
+- `npm run preview` — preview built assets locally
 - `npm run lint` — run ESLint
 - `npm run lint:fix` — auto-fix lintable issues
 - `npm test` — run unit tests (vitest)
-- `VITE_USE_STUBS=true npm run dev` — run the dev server with local stub fixtures
 
-## Project structure (high level)
+Check `package.json` for full scripts and any project-specific commands.
 
-- `src/components` — UI components (Page-level components at root, primitives under `ui/`)
-- `src/lib` — small helpers and API wrapper
-- `src/pages` — page entrypoints
-- `src/server` — local stubbed API handlers used by the dev server / cypress
+## Project layout (important parts)
 
-## Docker (production)
+- `src/` — application source
+	- `src/components/` — Page-level components (root) and UI primitives under `ui/`
+	- `src/lib/` — small helpers, API wrapper and business logic utilities
+	- `src/pages/` — route entry points
+	- `src/server/` — local stubbed API handlers used by the dev server and Cypress
+- `cypress/fixtures/api/data/` — JSON fixtures used by stubs and end-to-end tests
 
-Build the production image:
+This structure keeps UI components, utilities, pages and stub handlers separated for easier maintenance.
+
+## Local stubs
+
+The app can run against a small local stub API used for development and Cypress tests. Use the environment variable `VITE_USE_STUBS=true` when starting the dev server to enable these fixtures. The stub handlers live under `src/server/api/stubs/` and use the fixture files in `cypress/fixtures/api/data/`.
+
+## Docker (optional)
+
+Build a production image that serves the built app and the stub API (useful for demos):
 
 ```bash
 docker build -t loan-app:latest .
-```
-
-Run the container locally (serves the built app + stub API on port 8080):
-
-```bash
 docker run --rm -p 8080:8080 loan-app:latest
+
+# open http://localhost:8080
 ```
-
-Then open http://localhost:8080.
-
-The container exposes the same stubbed endpoints used by Cypress under
-`/api/stubs/*`, powered by the fixtures in `cypress/fixtures/api/data`.
-
-## Next steps / conventions used in the cleanup
-
-- Keep component filenames matching the exported component name (e.g. `Loans.jsx` exports `Loans`).
-- Favor small, testable utility functions in `src/lib` with unit tests.
-- Export UI primitives via `src/components/ui/index.js` for consistent imports.
-
-If you want me to continue, I can:
-
-1. Standardize component exports and add `src/components/index.js` for central exports.
-2. Consolidate and document `src/lib/api.js` and `src/lib/utils.js` and add a couple of unit tests.
-3. Run a safety refactor to make all UI primitives export via `src/components/ui/index.js` and update imports.
-
-Tell me which of the three follow-ups you'd like me to start with (1, 2 or 3), or say "do all" and I'll proceed step by step.

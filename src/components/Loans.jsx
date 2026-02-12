@@ -1,4 +1,4 @@
-import { useLoansLogic } from './logic';
+import { useLoansLogic } from '../lib/logic';
 import {
   Dialog,
   DialogContent,
@@ -39,9 +39,8 @@ const Loans = () => {
   rateError,
   setRateForm,
     selectedProductId,
-    stepLabels,
-    filteredProducts,
-    products,
+  stepLabels,
+  products,
     handleEligibilityChange,
     handleRateChange,
     submitEligibility,
@@ -141,13 +140,13 @@ const Loans = () => {
 
           {activeStep === 1 && (
             <div className="space-y-4">
-              {filteredProducts.length === 0 ? (
+              {(products ?? []).length === 0 ? (
                 <div className="rounded-xl border border-dashed border-gray-200 bg-gray-50 p-6 text-center text-sm text-gray-500">
                   No products match the selected purpose. Try another purpose.
                 </div>
               ) : (
                 <div className="grid gap-3 md:grid-cols-2">
-                  {filteredProducts.map((product) => (
+                  {(products ?? []).map((product) => (
                     <button
                       key={product.id}
                       type="button"

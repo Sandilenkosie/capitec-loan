@@ -16,12 +16,6 @@ const Footer = () => {
               estimated monthly repayments, and see which documents you'll need to apply. Results are
               confidential and intended for guidance only.
             </p>
-            <a
-              href="#loan-simulator"
-              className="btn-capitec text-sm inline-block"
-            >
-              Try the Loan Simulator
-            </a>
             <div className="flex space-x-4 mt-4">
               <a href="#!" className="text-gray-500 hover:text-capitec-blue transition-colors">
                 <Facebook className="h-5 w-5" />

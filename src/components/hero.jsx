@@ -1,6 +1,7 @@
 
 import { ArrowRight, ArrowUpRight, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { openLoanDialog } from "@/shared/loanDialog";
 
 const Hero = () => {
   return (
@@ -26,7 +27,11 @@ const Hero = () => {
               Quickly estimate if you qualify for a Capitec personal loan and see an approximate loan amount and repayment plan. No login required — just enter a few details.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="btn-capitec px-8 py-6">
+              <Button
+                size="lg"
+                className="btn-capitec px-8 py-6"
+                onClick={openLoanDialog}
+              >
                 Start Simulation
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

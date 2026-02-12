@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { openLoanDialog } from '@/shared/loanDialog';
 import { Menu, X } from 'lucide-react';
 
 const Layout = () => {
@@ -16,12 +17,7 @@ const Layout = () => {
   }, []);
 
   const handleApplyNow = (event) => {
-    event.preventDefault();
-    const section = document.querySelector('#how-it-works');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    window.dispatchEvent(new Event('open-loan-dialog'));
+    openLoanDialog(event);
     setIsMobileMenuOpen(false);
   };
 

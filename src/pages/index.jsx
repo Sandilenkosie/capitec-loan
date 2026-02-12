@@ -1,9 +1,9 @@
 
 import { useEffect } from 'react';
-import Layout from '@/components/Layout';
-import Hero from '@/components/Hero';
+import Layout from '@/components/layout';
+import Hero from '@/components/hero';
 import Loans from '@/components/Loans';
-import HowItWorks from '@/components/HowItWorks';
+import HowItWorks from '@/components/howitworks';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import useScrollAnimation from '@/server/utils/useScrollAnimation';

@@ -105,10 +105,17 @@ export const useLoansLogic = () => {
 
   useEffect(() => {
     const handleOpenDialog = () => {
+      if (typeof window !== "undefined") {
+        window.__openLoanDialogRequested = false;
+      }
       setApplyNowRequested(true);
     };
 
     window.addEventListener("open-loan-dialog", handleOpenDialog);
+    if (typeof window !== "undefined" && window.__openLoanDialogRequested) {
+      window.__openLoanDialogRequested = false;
+      setApplyNowRequested(true);
+    }
     return () =>
       window.removeEventListener("open-loan-dialog", handleOpenDialog);
   }, []);
@@ -187,10 +194,8 @@ export const useLoansLogic = () => {
       setApplyNowRequested(false);
       return;
     }
-    if (products.length > 0) {
-      startSimulator(products[0]);
-      setApplyNowRequested(false);
-    }
+    startSimulator(products[0] ?? null);
+    setApplyNowRequested(false);
   }, [applyNowRequested, dialogOpen, products, startSimulator]);
 
   const handleEligibilityChange = useCallback(
@@ -485,8 +490,6 @@ export const useLoansLogic = () => {
       ...(activeProduct?.purposes ?? ["other"]),
     ]),
   );
-  const filteredProducts = useMemo(() => products ?? [], [products]);
-
   const handleSelectProduct = useCallback((product) => {
     setSelectedProductId(product?.id ?? "");
     setRateForm((prev) => ({
@@ -501,14 +504,14 @@ export const useLoansLogic = () => {
   }, []);
 
   useEffect(() => {
-    if (!dialogOpen || filteredProducts.length === 0) return;
+    if (!dialogOpen || (products ?? []).length === 0) return;
     if (
       !selectedProductId ||
-      !filteredProducts.some((product) => product.id === selectedProductId)
+      !(products ?? []).some((product) => product.id === selectedProductId)
     ) {
-      handleSelectProduct(filteredProducts[0]);
+      handleSelectProduct((products ?? [])[0]);
     }
-  }, [dialogOpen, filteredProducts, selectedProductId, handleSelectProduct]);
+  }, [dialogOpen, products, selectedProductId, handleSelectProduct]);
 
   return {
     products,
@@ -540,7 +543,6 @@ export const useLoansLogic = () => {
     stepLabels,
     employmentOptions,
     purposeOptions,
-    filteredProducts,
     startSimulator,
     handleEligibilityChange,
     handleRateChange,
