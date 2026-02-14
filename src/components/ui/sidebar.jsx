@@ -33,6 +33,12 @@ const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 const SidebarContext = React.createContext(null)
 
+/**
+ * Accesses the current sidebar context for reading state and invoking controls.
+ *
+ * @returns {*} The current sidebar context value containing state and control functions.
+ * @throws {Error} If called outside a SidebarProvider.
+ */
 function useSidebar() {
   const context = React.useContext(SidebarContext)
   if (!context) {
